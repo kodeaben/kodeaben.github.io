@@ -24,6 +24,5 @@ jobs:
 
     - name: Build
       run: |
-        cd kodeaben_website/
         npm install
         npm run build -prod
