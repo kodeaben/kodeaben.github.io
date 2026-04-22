@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A static single-page portfolio/consultancy site for **Kodeaben** (Anders Stensgaard, freelance software engineer). Deployed to GitHub Pages at `kodeaben.com`. Zero build step — open `index.html` in a browser and it works.
+The public website for **Kodeaben** — Anders Stensgaard's freelance software engineering consultancy. It serves as his primary online presence: showcasing services, past client work, and providing a direct contact point for potential clients.
+
+The site is intentionally simple — a single scrolling HTML page, no build tooling, no framework. It will be served at `kodeaben.com` via GitHub Pages once the DNS is cut over from the current Squarespace site. To preview locally, open `index.html` directly in a browser.
 
 ## Files
 
@@ -33,7 +35,7 @@ Never hardcode hex values in `style.css` — always use CSS variables.
 1. **Nav** — sticky floating pill navbar
 2. **#hero** — headline + logo visual + two CTAs
 3. **#services** — 5 service cards in a responsive grid
-4. **#work** — 3 placeholder project cards (to be replaced with real content)
+4. **#work** — 7 client project cards (SEGES, OK emobility, BankData, LEGO, Danske Bank ×2, Intelligent Systems)
 5. **#contact** — mailto CTA, sage-tinted background
 6. **Footer** — brand + copyright
 
