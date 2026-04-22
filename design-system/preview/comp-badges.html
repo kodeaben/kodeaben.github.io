@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:#F6F2EA; padding:24px 28px; color:#2A2826; display:flex; gap:24px; flex-wrap:wrap; }
+  .meta { font-size:10px; font-weight:800; color:#9B6EA8; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+  .col { display:flex; flex-direction:column; gap:12px; min-width:200px; }
+
+  /* Badges */
+  .badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:800; padding:3px 10px; border:2px solid #2A2826; border-radius:999px; letter-spacing:0.03em; }
+  .badge-dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .b-lilac  { background:#D4B4D8; }
+  .b-sage   { background:#6B8F80; color:white; }
+  .b-tan    { background:#C9B87A; }
+  .b-dark   { background:#2A2826; color:#F6F2EA; }
+  .b-cream  { background:#F6F2EA; }
+  .b-success{ background:#d1f5e0; color:#1a6640; }
+  .b-warning{ background:#fef3c7; color:#92400e; }
+  .b-error  { background:#fee2e2; color:#991b1b; }
+
+  /* Tags */
+  .tag { display:inline-flex; align-items:center; font-size:11px; font-weight:700; padding:2px 8px; border:1.5px solid #2A2826; border-radius:6px; background:white; }
+
+  .badges-row { display:flex; flex-wrap:wrap; gap:6px; }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="meta">Brand Badges</div>
+    <div class="badges-row">
+      <span class="badge b-lilac">Primary</span>
+      <span class="badge b-sage">Sage</span>
+      <span class="badge b-tan">Accent</span>
+      <span class="badge b-dark">Dark</span>
+      <span class="badge b-cream">Neutral</span>
+    </div>
+
+    <div class="meta" style="margin-top:4px">Status Badges</div>
+    <div class="badges-row">
+      <span class="badge b-success"><span class="badge-dot" style="background:#16a34a"></span>Active</span>
+      <span class="badge b-warning"><span class="badge-dot" style="background:#d97706"></span>Pending</span>
+      <span class="badge b-error"><span class="badge-dot" style="background:#dc2626"></span>Error</span>
+      <span class="badge b-cream">Draft</span>
+    </div>
+
+    <div class="meta" style="margin-top:4px">Tags</div>
+    <div class="badges-row">
+      <span class="tag">design</span>
+      <span class="tag">frontend</span>
+      <span class="tag">react</span>
+      <span class="tag" style="background:#EDE0F0">new</span>
+      <span class="tag" style="background:#D2E4DC">stable</span>
+    </div>
+  </div>
+</body>
+</html>

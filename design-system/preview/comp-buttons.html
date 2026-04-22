@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:#F6F2EA; padding:24px 28px; color:#2A2826; }
+  .meta { font-size:10px; font-weight:800; color:#9B6EA8; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; }
+  .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:20px; }
+
+  /* Base button */
+  .btn { display:inline-flex; align-items:center; gap:6px; font-family:'Nunito',sans-serif; font-weight:800; border:2px solid #2A2826; cursor:pointer; transition:all 150ms ease-out; }
+  .btn:hover { transform:translate(-1px,-1px); }
+  .btn:active { transform:translate(1px,1px); box-shadow:none !important; }
+
+  /* Sizes */
+  .btn-sm  { font-size:12px; padding:5px 12px; border-radius:8px; }
+  .btn-md  { font-size:14px; padding:8px 18px; border-radius:12px; }
+  .btn-lg  { font-size:16px; padding:11px 24px; border-radius:16px; }
+  .btn-pill{ border-radius:999px; }
+
+  /* Variants */
+  .btn-primary   { background:#D4B4D8; box-shadow:4px 4px 0 #2A2826; }
+  .btn-primary:hover { background:#BF93C5; }
+  .btn-sage      { background:#6B8F80; color:white; box-shadow:4px 4px 0 #2A2826; }
+  .btn-sage:hover{ background:#527067; }
+  .btn-tan       { background:#C9B87A; box-shadow:4px 4px 0 #2A2826; }
+  .btn-tan:hover { background:#B5A05C; }
+  .btn-outline   { background:transparent; box-shadow:4px 4px 0 #2A2826; }
+  .btn-outline:hover { background:#F0E8CC; }
+  .btn-ghost     { background:transparent; border-color:transparent; box-shadow:none; }
+  .btn-ghost:hover{ background:#EDE8DC; border-color:#2A2826; }
+  .btn-dark      { background:#2A2826; color:#F6F2EA; box-shadow:4px 4px 0 #9B6EA8; }
+  .btn-dark:hover{ background:#4A4542; }
+  .btn-disabled  { background:#EDE8DC; color:#A09890; border-color:#C0B8B0; box-shadow:none; cursor:not-allowed; }
+  .btn-disabled:hover { transform:none; }
+</style>
+</head>
+<body>
+  <div class="meta">Primary · Lilac</div>
+  <div class="row">
+    <button class="btn btn-primary btn-sm">Small</button>
+    <button class="btn btn-primary btn-md">Medium button</button>
+    <button class="btn btn-primary btn-lg">Large button</button>
+    <button class="btn btn-primary btn-md btn-pill">Pill shape</button>
+  </div>
+
+  <div class="meta">Variants</div>
+  <div class="row">
+    <button class="btn btn-sage btn-md">Sage</button>
+    <button class="btn btn-tan btn-md">Tan / Accent</button>
+    <button class="btn btn-dark btn-md">Dark</button>
+    <button class="btn btn-outline btn-md">Outline</button>
+    <button class="btn btn-ghost btn-md">Ghost</button>
+    <button class="btn btn-disabled btn-md" disabled>Disabled</button>
+  </div>
+
+  <div class="meta">With icon (Lucide)</div>
+  <div class="row">
+    <button class="btn btn-primary btn-md">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A2826" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      Download
+    </button>
+    <button class="btn btn-sage btn-md">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Schedule
+    </button>
+    <button class="btn btn-outline btn-md btn-pill">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A2826" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Get started
+    </button>
+  </div>
+</body>
+</html>

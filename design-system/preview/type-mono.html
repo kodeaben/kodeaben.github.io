@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Nunito', sans-serif; background: #F6F2EA; padding: 28px 32px; color: #2A2826; display:flex; gap:32px; align-items:flex-start; }
+  .col { display:flex; flex-direction:column; gap:10px; }
+  .meta { font-size: 10px; font-weight: 800; color: #9B6EA8; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom:3px; }
+  .sample { font-family: 'JetBrains Mono', monospace; font-size: 13px; background:#EDE8DC; border:2px solid #2A2826; border-radius:8px; padding:10px 14px; box-shadow:2px 2px 0 #2A2826; }
+  .inline { display:inline; background:#EDE8DC; border:1.5px solid #2A2826; border-radius:4px; padding:1px 6px; font-family:'JetBrains Mono',monospace; font-size:0.85em; }
+  .weights { display:flex; flex-direction:column; gap:4px; }
+  .w { font-family:'JetBrains Mono',monospace; font-size:13px; color:#2A2826; }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="meta">Code block</div>
+    <div class="sample">const brand = {<br>&nbsp;&nbsp;name: "kodeaben",<br>&nbsp;&nbsp;color: "#D4B4D8",<br>};</div>
+    <div class="meta" style="margin-top:8px">Inline code</div>
+    <div style="font-size:14px;font-family:'Nunito',sans-serif">Use <span class="inline">npm install</span> to get started</div>
+  </div>
+  <div class="col">
+    <div class="meta">Weights</div>
+    <div class="weights">
+      <div class="w" style="font-weight:400">400 Regular — the quick brown fox</div>
+      <div class="w" style="font-weight:500">500 Medium — the quick brown fox</div>
+    </div>
+    <div class="meta" style="margin-top:8px">Sizes</div>
+    <div class="weights">
+      <div class="w" style="font-size:10px">10px — xs</div>
+      <div class="w" style="font-size:12px">12px — sm</div>
+      <div class="w" style="font-size:14px">14px — base</div>
+      <div class="w" style="font-size:16px">16px — lg</div>
+    </div>
+  </div>
+</body>
+</html>

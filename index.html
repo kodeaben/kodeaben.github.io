@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kodeaben — Software Consultancy</title>
+  <meta name="description" content="Kodeaben is a software consultancy run by Anders Stensgaard. Specialising in frontend development, mentoring, education, and technical hiring support.">
+  <link rel="icon" type="image/png" href="design-system/assets/logo.png">
+  <link rel="stylesheet" href="design-system/colors_and_type.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="navbar">
+      <div class="nav-logo">
+        <img src="design-system/assets/logo.png" alt="Kodeaben logo">
+      </div>
+      <span class="nav-brand">kodeaben</span>
+      <div class="nav-links">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-spacer"></div>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <i data-lucide="code-2" width="14" height="14"></i>
+          Software consultancy
+        </div>
+        <h1 class="hero-headline">
+          Code built to<br><span>last.</span>
+        </h1>
+        <p class="hero-sub">
+          Hi, I'm Anders — I help businesses build high-quality digital products, level up their teams, and hire the right engineers.
+        </p>
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-primary btn-lg">See what I offer</a>
+          <a href="#contact" class="btn btn-outline btn-lg">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-logo-wrap">
+          <img src="design-system/assets/logo.png" alt="Kodeaben mascot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Services ───────────────────────────────────────────────── -->
+  <section id="services">
+    <div class="section-inner">
+      <p class="section-label">What I do</p>
+      <h2 class="section-heading">Services</h2>
+      <p class="section-sub">
+        From shipping production code to training your team — I bring structure and craft to wherever you need it most.
+      </p>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon" style="background: color-mix(in srgb, var(--color-primary) 30%, white);">
+            <i data-lucide="layers" width="22" height="22"></i>
+          </div>
+          <span class="service-tag" style="background: color-mix(in srgb, var(--color-primary) 30%, white);">Development</span>
+          <div class="service-title">Software Development</div>
+          <p class="service-desc">
+            Robust, maintainable, and scalable solutions — frontend-first, with deep expertise in Angular, React, React Native, .NET Core, Node.js, and SQL.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon" style="background: color-mix(in srgb, var(--color-accent) 30%, white);">
+            <i data-lucide="bug" width="22" height="22"></i>
+          </div>
+          <span class="service-tag" style="background: color-mix(in srgb, var(--color-accent) 30%, white);">Debugging</span>
+          <div class="service-title">On-Demand Problem Solving</div>
+          <p class="service-desc">
+            Facing a persistent bug or a gnarly architectural issue? I diagnose root causes fast and implement fixes that actually hold up.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon" style="background: color-mix(in srgb, var(--color-secondary) 25%, white);">
+            <i data-lucide="user-check" width="22" height="22"></i>
+          </div>
+          <span class="service-tag" style="background: color-mix(in srgb, var(--color-secondary) 25%, white);">Mentoring</span>
+          <div class="service-title">Developer Mentoring</div>
+          <p class="service-desc">
+            Structured growth for developers who want to level up in frontend technologies, clean code practices, and architectural thinking.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon" style="background: color-mix(in srgb, var(--color-primary) 30%, white);">
+            <i data-lucide="presentation" width="22" height="22"></i>
+          </div>
+          <span class="service-tag" style="background: color-mix(in srgb, var(--color-primary) 30%, white);">Education</span>
+          <div class="service-title">Workshops &amp; Training</div>
+          <p class="service-desc">
+            Hands-on workshops covering modern frontend development, testing strategies, refactoring, and code quality — tailored to your team.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon" style="background: color-mix(in srgb, var(--color-accent) 30%, white);">
+            <i data-lucide="search-check" width="22" height="22"></i>
+          </div>
+          <span class="service-tag" style="background: color-mix(in srgb, var(--color-accent) 30%, white);">Hiring</span>
+          <div class="service-title">Technical Hiring Support</div>
+          <p class="service-desc">
+            Need to hire frontend developers but lack the technical depth to evaluate them? I run screenings, code assessments, and interviews so you hire right.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Work ───────────────────────────────────────────────────── -->
+  <section id="work">
+    <div class="section-inner">
+      <p class="section-label">Selected projects</p>
+      <h2 class="section-heading">Work</h2>
+      <p class="section-sub">
+        A selection of projects I've shipped — from consumer products to internal tools and design systems.
+      </p>
+      <div class="work-grid">
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-primary) 25%, var(--color-bg-sunken));">
+            <i data-lucide="smartphone" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-primary) 35%, white);">React Native · Angular</span>
+            <div class="card-title">SEGES — Mobile &amp; Frontend</div>
+            <p class="card-desc">Modernised a large Angular codebase and led development of two React Native apps — both now live on the App Store and Play Store.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">Angular · React Native · Testing</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-secondary) 20%, var(--color-bg-sunken));">
+            <i data-lucide="zap" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-secondary) 25%, white);">Fullstack · EV</span>
+            <div class="card-title">OK emobility — EV Charging Platform</div>
+            <p class="card-desc">Built fullstack features for an EV charger management platform and established frontend standards across the team. Angular, C#/.NET, SQL.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">Angular · .NET · SQL</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-accent) 25%, var(--color-bg-sunken));">
+            <i data-lucide="layout-panel-left" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-accent) 35%, white);">Design system</span>
+            <div class="card-title">BankData — Design System</div>
+            <p class="card-desc">Restructured an Angular component library from single to multiple entry points, reducing bundle sizes and improving scalability for all consumers.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">Angular · Library architecture</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-primary) 20%, var(--color-bg-sunken));">
+            <i data-lucide="network" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-primary) 35%, white);">React · DevOps</span>
+            <div class="card-title">LEGO — Network Management UI</div>
+            <p class="card-desc">Built a web interface for LEGO GI allowing non-technical staff to manage network devices. Refactored a React monorepo and introduced Cypress E2E tests and Sentry error monitoring.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">React · Cypress · Sentry</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-secondary) 20%, var(--color-bg-sunken));">
+            <i data-lucide="shield-check" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-secondary) 25%, white);">Leadership · Fintech</span>
+            <div class="card-title">Danske Bank — AML Frontend Chapter</div>
+            <p class="card-desc">Led frontend strategy across 10 squads in the Anti Money Laundering tribe. Managed 8 frontend engineers and drove quality, performance, and scalability across 15 frontends.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">Angular · Chapter Lead · React</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-accent) 20%, var(--color-bg-sunken));">
+            <i data-lucide="git-merge" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-accent) 35%, white);">Management · Fintech</span>
+            <div class="card-title">Danske Bank — AML Team Manager</div>
+            <p class="card-desc">Managed a team of 8 developers building anti-financial-crime solutions. Led a 3rd-party vendor integration end-to-end: standing up a test team, defining automated test requirements, and owning the release approval process.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">Team management · QA · Vendor integration</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img" style="background: color-mix(in srgb, var(--color-primary) 20%, var(--color-bg-sunken));">
+            <i data-lucide="warehouse" width="40" height="40" style="opacity: 0.4;"></i>
+          </div>
+          <div class="card-body">
+            <span class="card-tag" style="background: color-mix(in srgb, var(--color-primary) 35%, white);">Fullstack · Logistics</span>
+            <div class="card-title">Intelligent Systems — WMS</div>
+            <p class="card-desc">Led frontend development of a warehouse management system, built fullstack features in Angular, Java, Spring Boot, and SQL, trained the team in frontend technologies, and ran agile ceremonies as Scrum Master.</p>
+          </div>
+          <div class="card-footer">
+            <span style="font-size: 10px; font-weight: 700; color: var(--color-fg-muted);">Angular · Java · Spring Boot · SQL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ────────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-inner">
+      <p class="section-label">Let's talk</p>
+      <h2 class="section-heading">Got a project in mind?</h2>
+      <p class="section-sub">
+        Whether you need a development partner, training for your team, or help hiring the right engineer — I'd love to hear about it.
+      </p>
+      <a href="mailto:anders@kodeaben.com" class="btn btn-dark btn-lg">
+        <i data-lucide="mail" width="18" height="18"></i>
+        anders@kodeaben.com
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="design-system/assets/logo.png" alt="Kodeaben">
+        </div>
+        <span class="footer-name">kodeaben</span>
+      </div>
+      <span class="footer-copy">© 2025 Anders Stensgaard</span>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:#F6F2EA; padding:24px 28px; color:#2A2826; display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start; }
+
+  .card {
+    background:white;
+    border:2px solid #2A2826;
+    border-radius:16px;
+    box-shadow:4px 4px 0 #2A2826;
+    overflow:hidden;
+    transition:all 150ms ease-out;
+    width:200px;
+  }
+  .card:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 #2A2826; }
+  .card-img { height:90px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#4A4542; letter-spacing:0.04em; }
+  .card-body { padding:14px; }
+  .card-tag { display:inline-block; font-size:10px; font-weight:800; padding:2px 8px; border:1.5px solid #2A2826; border-radius:999px; margin-bottom:6px; }
+  .card-title { font-size:14px; font-weight:800; line-height:1.3; margin-bottom:4px; }
+  .card-desc { font-size:12px; font-weight:500; color:#4A4542; line-height:1.5; }
+  .card-footer { padding:10px 14px; border-top:2px solid #2A2826; display:flex; align-items:center; justify-content:space-between; }
+  .card-footer span { font-size:11px; font-weight:700; color:#6B8F80; }
+  .card-btn { font-family:'Nunito',sans-serif; font-size:11px; font-weight:800; background:#D4B4D8; border:2px solid #2A2826; border-radius:8px; padding:4px 10px; cursor:pointer; box-shadow:2px 2px 0 #2A2826; }
+  .card-btn:hover { transform:translate(-1px,-1px); box-shadow:3px 3px 0 #2A2826; }
+
+  /* Flat card */
+  .card-flat { background:#EDE0F0; border:2px solid #2A2826; border-radius:16px; padding:16px; width:190px; }
+
+  /* Horizontal card */
+  .card-h { display:flex; align-items:center; gap:12px; background:white; border:2px solid #2A2826; border-radius:12px; box-shadow:3px 3px 0 #2A2826; padding:12px; width:280px; }
+  .card-h-icon { width:44px; height:44px; border-radius:10px; border:2px solid #2A2826; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+</style>
+</head>
+<body>
+
+  <!-- Standard card -->
+  <div class="card">
+    <div class="card-img" style="background:#D4B4D8; background: linear-gradient(135deg, #EDE0F0 0%, #D4B4D8 100%);">
+      <span style="opacity:0.5">[ image ]</span>
+    </div>
+    <div class="card-body">
+      <span class="card-tag" style="background:#D4B4D8">Design</span>
+      <div class="card-title">Building with intent</div>
+      <div class="card-desc">How thoughtful systems create better products over time.</div>
+    </div>
+    <div class="card-footer">
+      <span>3 min read</span>
+      <button class="card-btn">Read →</button>
+    </div>
+  </div>
+
+  <!-- Sage card -->
+  <div class="card">
+    <div class="card-img" style="background: linear-gradient(135deg, #D2E4DC 0%, #A9CCB9 100%);">
+      <span style="opacity:0.5">[ image ]</span>
+    </div>
+    <div class="card-body">
+      <span class="card-tag" style="background:#6B8F80;color:white">Dev</span>
+      <div class="card-title">Component patterns</div>
+      <div class="card-desc">Reusable, composable UI that scales with your team.</div>
+    </div>
+    <div class="card-footer">
+      <span>5 min read</span>
+      <button class="card-btn" style="background:#6B8F80;color:white">Read →</button>
+    </div>
+  </div>
+
+  <!-- Flat card -->
+  <div class="card-flat">
+    <div style="font-size:11px;font-weight:800;color:#9B6EA8;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px">Flat / Tinted</div>
+    <div style="font-size:15px;font-weight:900;margin-bottom:5px">Quick tip</div>
+    <div style="font-size:12px;font-weight:500;color:#4A4542;line-height:1.5">Use offset shadows consistently — they reinforce the cartoon outline aesthetic.</div>
+  </div>
+
+  <!-- Horizontal card -->
+  <div>
+    <div style="font-size:10px;font-weight:800;color:#9B6EA8;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">Horizontal</div>
+    <div class="card-h">
+      <div class="card-h-icon" style="background:#FAF6EC">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B5A05C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:800;margin-bottom:2px">Task complete</div>
+        <div style="font-size:11px;font-weight:500;color:#4A4542">Your project was saved successfully.</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:#F6F2EA; padding:24px 28px; color:#2A2826; display:flex; gap:40px; }
+  .col { display:flex; flex-direction:column; gap:16px; }
+  .meta { font-size:10px; font-weight:800; color:#9B6EA8; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; }
+
+  /* Radius */
+  .radii { display:flex; gap:10px; align-items:flex-end; }
+  .r { background:#D4B4D8; border:2px solid #2A2826; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; }
+  .rlabel { font-size:9px; font-weight:800; padding:3px 5px; background:white; border-top:2px solid #2A2826; width:100%; text-align:center; }
+
+  /* Shadow */
+  .shadows { display:flex; gap:14px; align-items:center; }
+  .sh { width:52px; height:36px; background:white; border:2px solid #2A2826; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:800; }
+
+  /* Spacing */
+  .spacing { display:flex; flex-direction:column; gap:5px; }
+  .sp-row { display:flex; align-items:center; gap:8px; }
+  .sp-bar { background:#6B8F80; height:10px; border-radius:2px; }
+  .sp-label { font-size:10px; font-weight:700; color:#4A4542; min-width:80px; }
+</style>
+</head>
+<body>
+  <div class="col">
+    <div class="meta">Border Radius</div>
+    <div class="radii">
+      <div><div class="r" style="width:32px;height:32px;border-radius:4px"><div class="rlabel">xs 4</div></div></div>
+      <div><div class="r" style="width:36px;height:36px;border-radius:8px"><div class="rlabel">sm 8</div></div></div>
+      <div><div class="r" style="width:40px;height:40px;border-radius:12px"><div class="rlabel">md 12</div></div></div>
+      <div><div class="r" style="width:46px;height:46px;border-radius:20px"><div class="rlabel">lg 20</div></div></div>
+      <div><div class="r" style="width:52px;height:52px;border-radius:32px"><div class="rlabel">xl 32</div></div></div>
+      <div><div class="r" style="width:52px;height:30px;border-radius:999px"><div class="rlabel">pill</div></div></div>
+      <div><div class="r" style="width:44px;height:44px;border-radius:50%"><div class="rlabel">circle</div></div></div>
+    </div>
+
+    <div class="meta" style="margin-top:8px">Offset Shadows</div>
+    <div class="shadows">
+      <div><div class="sh" style="box-shadow:2px 2px 0 #2A2826">xs</div></div>
+      <div><div class="sh" style="box-shadow:3px 3px 0 #2A2826">sm</div></div>
+      <div><div class="sh" style="box-shadow:4px 4px 0 #2A2826">md</div></div>
+      <div><div class="sh" style="box-shadow:6px 6px 0 #2A2826">lg</div></div>
+      <div><div class="sh" style="box-shadow:8px 8px 0 #2A2826">xl</div></div>
+      <div><div class="sh" style="box-shadow:4px 4px 0 #9B6EA8;border-color:#9B6EA8">lilac</div></div>
+      <div><div class="sh" style="box-shadow:4px 4px 0 #6B8F80;border-color:#6B8F80">sage</div></div>
+      <div><div class="sh" style="box-shadow:4px 4px 0 #B5A05C;border-color:#B5A05C">tan</div></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="meta">Spacing Scale</div>
+    <div class="spacing">
+      <div class="sp-row"><div class="sp-label">space-1 · 4px</div><div class="sp-bar" style="width:4px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-2 · 8px</div><div class="sp-bar" style="width:8px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-3 · 12px</div><div class="sp-bar" style="width:12px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-4 · 16px</div><div class="sp-bar" style="width:16px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-5 · 20px</div><div class="sp-bar" style="width:20px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-6 · 24px</div><div class="sp-bar" style="width:24px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-8 · 32px</div><div class="sp-bar" style="width:32px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-10 · 40px</div><div class="sp-bar" style="width:40px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-12 · 48px</div><div class="sp-bar" style="width:48px"></div></div>
+      <div class="sp-row"><div class="sp-label">space-16 · 64px</div><div class="sp-bar" style="width:64px"></div></div>
+    </div>
+  </div>
+</body>
+</html>

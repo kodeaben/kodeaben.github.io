@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Nunito',sans-serif; background:#F6F2EA; padding:24px 28px; color:#2A2826; display:flex; gap:16px; flex-wrap:wrap; }
+  .meta { font-size:10px; font-weight:800; color:#9B6EA8; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+
+  /* Inputs */
+  .field { display:flex; flex-direction:column; gap:5px; min-width:200px; }
+  label { font-size:12px; font-weight:800; color:#2A2826; }
+  input, textarea, select {
+    font-family:'Nunito',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:#2A2826;
+    background:white;
+    border:2px solid #2A2826;
+    border-radius:10px;
+    padding:9px 12px;
+    box-shadow:3px 3px 0 #2A2826;
+    outline:none;
+    transition:all 150ms ease-out;
+    width:100%;
+  }
+  input:focus, textarea:focus, select:focus {
+    box-shadow:3px 3px 0 #9B6EA8;
+    border-color:#9B6EA8;
+  }
+  input::placeholder { color:#A09890; font-weight:500; }
+  textarea { resize:vertical; min-height:70px; }
+  .hint { font-size:11px; font-weight:600; color:#6B8F80; }
+  .error-msg { font-size:11px; font-weight:700; color:#dc2626; }
+  input.err { border-color:#dc2626; box-shadow:3px 3px 0 #dc2626; }
+
+  /* Checkbox & Radio */
+  .check-row { display:flex; align-items:center; gap:8px; cursor:pointer; }
+  .check-box { width:18px; height:18px; border:2px solid #2A2826; border-radius:5px; background:white; box-shadow:2px 2px 0 #2A2826; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .check-box.checked { background:#D4B4D8; }
+  .radio-box { width:18px; height:18px; border:2px solid #2A2826; border-radius:50%; background:white; box-shadow:2px 2px 0 #2A2826; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .radio-dot { width:8px; height:8px; border-radius:50%; background:#2A2826; }
+  .check-label { font-size:13px; font-weight:700; }
+</style>
+</head>
+<body>
+  <div style="display:flex;flex-direction:column;gap:12px;min-width:220px;">
+    <div class="meta">Text inputs</div>
+    <div class="field">
+      <label>Your name</label>
+      <input type="text" placeholder="e.g. Alex Chen">
+      <span class="hint">Used for your public profile</span>
+    </div>
+    <div class="field">
+      <label>Email <span style="color:#dc2626">*</span></label>
+      <input type="email" class="err" value="not-an-email">
+      <span class="error-msg">Please enter a valid email address</span>
+    </div>
+    <div class="field">
+      <label>Message</label>
+      <textarea placeholder="Say something nice..."></textarea>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px;min-width:180px;">
+    <div class="meta">Select</div>
+    <div class="field">
+      <label>Plan</label>
+      <select><option>Free tier</option><option>Pro</option><option>Team</option></select>
+    </div>
+
+    <div class="meta" style="margin-top:4px">Checkboxes</div>
+    <div class="check-row">
+      <div class="check-box checked">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#2A2826" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <span class="check-label">Send me updates</span>
+    </div>
+    <div class="check-row">
+      <div class="check-box"></div>
+      <span class="check-label">Marketing emails</span>
+    </div>
+
+    <div class="meta" style="margin-top:4px">Radio</div>
+    <div class="check-row">
+      <div class="radio-box"><div class="radio-dot"></div></div>
+      <span class="check-label">Monthly billing</span>
+    </div>
+    <div class="check-row">
+      <div class="radio-box"></div>
+      <span class="check-label">Annual billing</span>
+    </div>
+  </div>
+</body>
+</html>
