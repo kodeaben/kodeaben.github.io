@@ -134,11 +134,25 @@
   --shadow-sage:  4px 4px 0px var(--color-sage-400);
   --shadow-tan:   4px 4px 0px var(--color-tan-400);
 
-  /* ─── TRANSITIONS ───────────────────────────── */
-  --transition-fast:   100ms ease-out;
-  --transition-base:   150ms ease-out;
-  --transition-slow:   250ms ease-out;
-  --transition-bounce: 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* ─── EASING ────────────────────────────────── */
+  --ease-snap:    cubic-bezier(0.34, 1.56, 0.64, 1);   /* slight overshoot — primary */
+  --ease-bounce:  cubic-bezier(0.68, -0.6, 0.32, 1.6); /* bigger overshoot — playful */
+  --ease-smooth:  cubic-bezier(0.4, 0, 0.2, 1);        /* steady — utility */
+  --ease-out:     cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+
+  /* ─── DURATIONS ──────────────────────────────── */
+  --dur-instant: 80ms;
+  --dur-fast:    150ms;
+  --dur-base:    220ms;
+  --dur-slow:    400ms;
+  --dur-stage:   600ms;
+
+  /* ─── TRANSITION SHORTHANDS (legacy) ─────────── */
+  --transition-fast:   var(--dur-fast) var(--ease-smooth);
+  --transition-base:   var(--dur-base) var(--ease-smooth);
+  --transition-slow:   var(--dur-slow) var(--ease-smooth);
+  --transition-bounce: var(--dur-base) var(--ease-snap);
 }
 
 /* ─── BASE ELEMENT STYLES ───────────────────── */

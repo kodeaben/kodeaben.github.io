@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kodeaben — Desktop + Mobile</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --lilac-100:#EDE0F0; --lilac-200:#D4B4D8; --lilac-300:#BF93C5; --lilac-500:#9B6EA8;
+    --sage-200:#A9CCB9;
+    --tan-200:#DDD0A0; --tan-300:#C9B87A;
+    --cream:#F6F2EA; --cream-dark:#EDE8DC;
+    --charcoal:#2A2826; --charcoal-soft:#4A4542;
+    --white:#FFFFFF;
+
+    --ease-snap:   cubic-bezier(0.34, 1.56, 0.64, 1);
+    --dur-fast:    150ms;
+  }
+
+  html, body { height:100%; }
+  body {
+    font-family:'Nunito',sans-serif; background:var(--cream); color:var(--charcoal);
+    min-height:100vh;
+    display:flex; flex-direction:column;
+  }
+
+  /* Header */
+  .topbar {
+    flex-shrink:0;
+    padding: 22px 32px 18px;
+    border-bottom: 2px solid var(--charcoal);
+    background: var(--white);
+    display:flex; align-items:flex-start; gap:24px; justify-content:space-between;
+  }
+  .topbar-eyebrow { font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--lilac-500); margin-bottom:4px; }
+  .topbar h1 { font-size:1.5rem; font-weight:900; letter-spacing:-0.02em; margin-bottom:4px; }
+  .topbar p { font-size:13px; font-weight:500; color:var(--charcoal-soft); line-height:1.5; max-width:680px; }
+  .topbar p strong { color:var(--charcoal); font-weight:800; }
+  .topbar-links { display:flex; gap:8px; flex-shrink:0; }
+  .topbar-link {
+    font-family:'Nunito',sans-serif; font-size:12px; font-weight:800;
+    background:var(--white); color:var(--charcoal);
+    border:2px solid var(--charcoal); border-radius:10px;
+    padding:8px 14px; cursor:pointer; box-shadow:3px 3px 0 var(--charcoal);
+    text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    transition: transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-snap), background var(--dur-fast) ease;
+  }
+  .topbar-link:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--charcoal); background:var(--lilac-100); }
+  .topbar-link:active { transform:translate(1px,1px); box-shadow:1px 1px 0 var(--charcoal); }
+
+  /* Stage */
+  .stage {
+    flex:1;
+    display:grid;
+    grid-template-columns: 1fr 480px;
+    gap: 0;
+    min-height: 0;
+  }
+
+  /* Left: desktop mapping iframe */
+  .desktop-pane {
+    border-right: 2px solid var(--charcoal);
+    background: var(--cream-dark);
+    position: relative;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .pane-label {
+    position: absolute; top: 12px; left: 12px;
+    font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase;
+    background: var(--charcoal); color: var(--cream);
+    padding: 5px 10px; border-radius:999px;
+    border: 2px solid var(--charcoal);
+    z-index: 10;
+    box-shadow: 2px 2px 0 var(--lilac-500);
+  }
+  .desktop-pane iframe {
+    flex:1; width:100%; border:none; background:var(--cream);
+  }
+
+  /* Right: mobile in iPhone frame */
+  .mobile-pane {
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(155, 110, 168, 0.06) 12px, rgba(155, 110, 168, 0.06) 24px),
+      var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    padding: 32px 24px;
+    position: relative;
+    overflow:hidden;
+  }
+
+  /* iPhone frame */
+  .phone {
+    width: 380px;
+    height: 780px;
+    border-radius: 48px;
+    background: #000;
+    padding: 12px;
+    box-shadow:
+      0 30px 60px rgba(0,0,0,0.25),
+      0 0 0 2px var(--charcoal),
+      8px 8px 0 var(--charcoal);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    border-radius: 38px;
+    overflow: hidden;
+    background: var(--cream);
+    position: relative;
+  }
+  /* Dynamic island */
+  .dynamic-island {
+    position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 32px;
+    background: #000;
+    border-radius: 24px;
+    z-index: 100;
+    pointer-events: none;
+  }
+  /* Status bar overlay */
+  .status-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 28px 0;
+    z-index: 50;
+    pointer-events: none;
+    color: var(--charcoal);
+  }
+  .status-time { font-size: 14px; font-weight: 700; font-family:-apple-system, system-ui; letter-spacing: -0.3px; }
+  .status-icons { display: flex; gap: 5px; align-items:center; }
+  /* Home indicator */
+  .home-indicator {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 130px; height: 5px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 100px;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .phone-screen iframe {
+    width: 100%; height: 100%;
+    border: none;
+    background: var(--cream);
+  }
+
+  /* Caption under phone */
+  .mobile-caption {
+    position: absolute;
+    right: 24px; bottom: 24px;
+    width: 220px;
+    background: var(--white);
+    border: 2px solid var(--charcoal);
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: 3px 3px 0 var(--charcoal);
+    font-size: 11px; font-weight:600; color: var(--charcoal-soft); line-height:1.5;
+  }
+  .mobile-caption strong { display:block; font-size:12px; font-weight:900; color:var(--charcoal); margin-bottom:4px; letter-spacing:-0.01em; }
+  .mobile-caption ul { margin: 6px 0 0; padding-left: 14px; }
+  .mobile-caption li { margin-bottom: 2px; }
+
+  /* Responsive — stack on narrow */
+  @media (max-width: 1100px) {
+    .stage { grid-template-columns: 1fr; }
+    .desktop-pane { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div>
+    <div class="topbar-eyebrow">Cross-platform review</div>
+    <h1>Desktop + Mobile, side by side</h1>
+    <p>The <strong>desktop site mapping</strong> on the left and the <strong>mobile companion</strong> on the right — same animation language, adapted for touch. Scroll the desktop pane independently. Both are live and interactive.</p>
+  </div>
+  <div class="topbar-links">
+    <a class="topbar-link" href="site-mapping.html">Desktop only ↗</a>
+    <a class="topbar-link" href="mobile.html">Mobile only ↗</a>
+    <a class="topbar-link" href="index.html">All patterns ↗</a>
+  </div>
+</header>
+
+<div class="stage">
+
+  <!-- DESKTOP -->
+  <div class="desktop-pane">
+    <div class="pane-label">Desktop · kodeaben.com</div>
+    <iframe src="site-mapping.html" title="Desktop animation mapping"></iframe>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="mobile-pane">
+    <div class="pane-label">Mobile · iPhone</div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="dynamic-island"></div>
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div class="status-icons">
+            <svg width="16" height="11" viewBox="0 0 19 12"><rect x="0" y="7.5" width="3.2" height="4.5" rx="0.7" fill="currentColor"/><rect x="4.8" y="5" width="3.2" height="7" rx="0.7" fill="currentColor"/><rect x="9.6" y="2.5" width="3.2" height="9.5" rx="0.7" fill="currentColor"/><rect x="14.4" y="0" width="3.2" height="12" rx="0.7" fill="currentColor"/></svg>
+            <svg width="14" height="10" viewBox="0 0 17 12"><path d="M8.5 3.2C10.8 3.2 12.9 4.1 14.4 5.6L15.5 4.5C13.7 2.7 11.2 1.5 8.5 1.5C5.8 1.5 3.3 2.7 1.5 4.5L2.6 5.6C4.1 4.1 6.2 3.2 8.5 3.2Z" fill="currentColor"/><path d="M8.5 6.8C9.9 6.8 11.1 7.3 12 8.2L13.1 7.1C11.8 5.9 10.2 5.1 8.5 5.1C6.8 5.1 5.2 5.9 3.9 7.1L5 8.2C5.9 7.3 7.1 6.8 8.5 6.8Z" fill="currentColor"/><circle cx="8.5" cy="10.5" r="1.5" fill="currentColor"/></svg>
+            <svg width="22" height="11" viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" stroke="currentColor" stroke-opacity="0.4" fill="none"/><rect x="2" y="2" width="20" height="9" rx="2" fill="currentColor"/></svg>
+          </div>
+        </div>
+        <iframe src="mobile.html" title="Mobile animation companion"></iframe>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <div class="mobile-caption">
+      <strong>Try on the phone</strong>
+      <ul>
+        <li>Tap any button → press shadow snap</li>
+        <li>Swipe message rows → reveal actions</li>
+        <li>Pull down at top → custom refresh</li>
+        <li>Tap "Open sheet" → bottom sheet</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

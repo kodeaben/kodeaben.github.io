@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>kodeaben.com — Animation mapping</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --lilac-50:#F7F0F8; --lilac-100:#EDE0F0; --lilac-200:#D4B4D8;
+    --lilac-300:#BF93C5; --lilac-500:#9B6EA8; --lilac-700:#5E3C68;
+    --sage-100:#D2E4DC; --sage-200:#A9CCB9; --sage-400:#6B8F80;
+    --tan-100:#F0E8CC; --tan-200:#DDD0A0; --tan-300:#C9B87A; --tan-400:#B5A05C;
+    --cream:#F6F2EA; --cream-dark:#EDE8DC;
+    --charcoal:#2A2826; --charcoal-soft:#4A4542;
+    --white:#FFFFFF;
+
+    --ease-snap:   cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-fast:    150ms;
+    --dur-base:    220ms;
+    --dur-slow:    400ms;
+    --dur-stage:   600ms;
+  }
+
+  body { font-family:'Nunito',sans-serif; background:var(--cream); color:var(--charcoal); }
+
+  /* ─── INTRO HEADER ─── */
+  .intro {
+    padding: 28px 40px 20px;
+    border-bottom: 2px solid var(--charcoal);
+    background: var(--white);
+    display:flex; align-items:flex-start; gap:20px; justify-content:space-between;
+  }
+  .intro-eyebrow { font-size:10px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--lilac-500); margin-bottom:6px; }
+  .intro h1 { font-size:1.75rem; font-weight:900; letter-spacing:-0.02em; margin-bottom:8px; }
+  .intro p { font-size:13px; font-weight:500; color:var(--charcoal-soft); line-height:1.55; max-width:580px; }
+  .intro p strong { color:var(--charcoal); font-weight:800; }
+  .intro-controls { display:flex; gap:8px; align-items:center; flex-shrink:0; }
+  .ctrl-btn {
+    font-family:'Nunito',sans-serif; font-size:12px; font-weight:800;
+    background:var(--white); border:2px solid var(--charcoal); border-radius:10px;
+    padding:8px 14px; cursor:pointer; box-shadow:3px 3px 0 var(--charcoal);
+    transition: transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-snap), background var(--dur-fast) var(--ease-smooth);
+  }
+  .ctrl-btn:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--charcoal); }
+  .ctrl-btn:active { transform:translate(1px,1px); box-shadow:1px 1px 0 var(--charcoal); }
+  .ctrl-btn.active { background:var(--lilac-200); }
+
+  /* ─── SPLIT LAYOUT ─── */
+  .split { display:grid; grid-template-columns: 1fr 360px; min-height:calc(100vh - 130px); }
+
+  /* ─── LEFT: PAGE PREVIEW ─── */
+  .page-frame {
+    overflow-y: auto; height: calc(100vh - 130px);
+    padding: 32px;
+    background: var(--cream);
+    border-right: 2px solid var(--charcoal);
+    scroll-behavior:smooth;
+  }
+  .page-frame::-webkit-scrollbar { width:10px; }
+  .page-frame::-webkit-scrollbar-track { background:var(--cream-dark); }
+  .page-frame::-webkit-scrollbar-thumb { background:var(--lilac-300); border:2px solid var(--charcoal); border-radius:5px; }
+
+  /* === Page mock — kodeaben.com structure === */
+  .kb-nav {
+    display:flex; align-items:center; gap:0;
+    background:var(--white); border:2px solid var(--charcoal); border-radius:14px;
+    padding:8px 12px; box-shadow:4px 4px 0 var(--charcoal);
+    margin-bottom: 32px;
+  }
+  .kb-nav-logo { width:34px; height:34px; border-radius:50%; overflow:hidden; border:2px solid var(--charcoal); flex-shrink:0; cursor:pointer;
+    transition: transform var(--dur-base) var(--ease-bounce), box-shadow var(--dur-base) var(--ease-bounce);
+  }
+  .kb-nav-logo img { width:100%; height:100%; object-fit:cover; pointer-events:none; }
+  .kb-nav-logo:hover { transform:scale(1.1) rotate(-4deg); box-shadow:2px 2px 0 var(--lilac-500); }
+  .kb-nav-logo.click-pulse { animation: clickPulse 500ms var(--ease-bounce); }
+  @keyframes clickPulse {
+    0% { transform: scale(1); }
+    30% { transform: scale(0.85) rotate(2deg); }
+    60% { transform: scale(1.15) rotate(-3deg); }
+    100% { transform: scale(1); }
+  }
+  .kb-nav-brand { font-weight:900; font-size:15px; margin: 0 16px 0 9px; letter-spacing:-0.01em; }
+  .kb-nav-links { display:flex; gap:0; }
+  .kb-nav-link { font-size:13px; font-weight:700; padding:6px 10px; cursor:pointer; color:var(--charcoal); position:relative; }
+  .kb-nav-link::after {
+    content:''; position:absolute; left:10px; right:10px; bottom:2px; height:2px;
+    background:var(--charcoal); border-radius:2px;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--dur-base) var(--ease-snap);
+  }
+  .kb-nav-link:hover::after { transform: scaleX(1); }
+  .kb-nav-spacer { flex:1; }
+  .kb-nav-cta {
+    font-family:'Nunito',sans-serif; font-size:12px; font-weight:800;
+    background:var(--charcoal); color:var(--cream);
+    border:2px solid var(--charcoal); border-radius:10px;
+    padding:6px 14px; cursor:pointer; box-shadow:3px 3px 0 var(--lilac-500);
+    transition: transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-snap);
+  }
+  .kb-nav-cta:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--lilac-500); }
+  .kb-nav-cta:active { transform:translate(2px,2px); box-shadow:0 0 0 var(--lilac-500); }
+
+  /* HERO */
+  .kb-hero { display:grid; grid-template-columns: 1fr 200px; gap:32px; align-items:center; margin-bottom:60px; padding:24px 0; }
+  .kb-eyebrow { font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--lilac-500); margin-bottom:12px; }
+  .kb-h1 { font-size:3rem; font-weight:900; letter-spacing:-0.03em; line-height:1; margin-bottom:14px; }
+  .kb-lede { font-size:14px; font-weight:500; color:var(--charcoal-soft); line-height:1.55; max-width:480px; margin-bottom:18px; }
+  .kb-hero-actions { display:flex; gap:10px; }
+  .kb-btn-primary { font-family:'Nunito',sans-serif; font-size:13px; font-weight:800; background:var(--lilac-200); border:2px solid var(--charcoal); border-radius:12px; padding:10px 18px; cursor:pointer; box-shadow:4px 4px 0 var(--charcoal); transition:transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-snap); }
+  .kb-btn-primary:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--charcoal); background:var(--lilac-300); }
+  .kb-btn-primary:active { transform:translate(2px,2px); box-shadow:0 0 0 var(--charcoal); }
+  .kb-btn-secondary { font-family:'Nunito',sans-serif; font-size:13px; font-weight:800; background:transparent; border:2px solid var(--charcoal); border-radius:12px; padding:10px 18px; cursor:pointer; box-shadow:4px 4px 0 var(--charcoal); transition:transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-snap); }
+  .kb-btn-secondary:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--charcoal); background:var(--cream-dark); }
+  .kb-btn-secondary:active { transform:translate(2px,2px); box-shadow:0 0 0 var(--charcoal); }
+  .kb-mascot { width:170px; height:170px; border-radius:50%; overflow:hidden; border:3px solid var(--charcoal); box-shadow:6px 6px 0 var(--charcoal); justify-self:center; cursor:pointer;
+    transition: transform var(--dur-base) var(--ease-bounce);
+  }
+  .kb-mascot:hover { transform: scale(1.05) rotate(-3deg); }
+  .kb-mascot img { width:100%; height:100%; object-fit:cover; pointer-events:none; }
+
+  /* Stagger entry */
+  .stagger { opacity:0; transform: translateY(16px); }
+  .play-stagger .stagger { animation: pageIn 600ms var(--ease-snap) forwards; }
+  .play-stagger .s1 { animation-delay: 0ms; }
+  .play-stagger .s2 { animation-delay: 80ms; }
+  .play-stagger .s3 { animation-delay: 160ms; }
+  .play-stagger .s4 { animation-delay: 240ms; }
+  .play-stagger .s5 { animation-delay: 320ms; }
+  @keyframes pageIn { to { opacity:1; transform: translateY(0); } }
+
+  /* Section header */
+  .kb-section-eyebrow { font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--lilac-500); margin-bottom:6px; }
+  .kb-h2 { font-size:2.25rem; font-weight:900; letter-spacing:-0.02em; line-height:1.05; margin-bottom:12px; }
+  .kb-section-lede { font-size:14px; font-weight:500; color:var(--charcoal-soft); line-height:1.55; max-width:520px; margin-bottom:24px; }
+
+  /* Services grid */
+  .kb-section { margin-bottom: 60px; }
+  .kb-services-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:14px; }
+  .kb-service {
+    background:var(--white); border:2px solid var(--charcoal); border-radius:14px;
+    padding:16px; box-shadow:3px 3px 0 var(--charcoal); cursor:pointer;
+    transition: transform var(--dur-base) var(--ease-snap), box-shadow var(--dur-base) var(--ease-snap);
+    opacity:0; transform: translateY(20px);
+  }
+  .kb-service.visible {
+    animation: serviceIn 500ms var(--ease-snap) forwards;
+  }
+  @keyframes serviceIn { to { opacity:1; transform: translateY(0); } }
+  .kb-service:hover { transform: translate(-3px,-4px); box-shadow:6px 7px 0 var(--lilac-500); }
+  .kb-service-tag { display:inline-block; font-size:10px; font-weight:800; padding:2px 8px; border:1.5px solid var(--charcoal); border-radius:999px; background:var(--lilac-200); margin-bottom:10px; }
+  .kb-service-title { font-size:15px; font-weight:900; margin-bottom:4px; }
+  .kb-service-desc { font-size:12px; font-weight:500; color:var(--charcoal-soft); line-height:1.5; }
+
+  /* Work grid */
+  .kb-work-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:14px; }
+  .kb-work {
+    background:var(--white); border:2px solid var(--charcoal); border-radius:14px;
+    overflow:hidden; box-shadow:3px 3px 0 var(--charcoal); cursor:pointer;
+    transition: transform var(--dur-base) var(--ease-snap), box-shadow var(--dur-base) var(--ease-snap);
+    opacity:0; transform: translateY(20px);
+  }
+  .kb-work.visible { animation: serviceIn 500ms var(--ease-snap) forwards; }
+  .kb-work:hover { transform: translate(-3px,-4px); box-shadow:6px 7px 0 var(--sage-400); }
+  .kb-work-img { height:90px; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, var(--lilac-100), var(--lilac-200)); border-bottom:2px solid var(--charcoal); font-size:11px; font-weight:700; color:var(--charcoal-soft); }
+  .kb-work-body { padding:14px; }
+  .kb-work-tag { display:inline-block; font-size:10px; font-weight:800; padding:2px 8px; border:1.5px solid var(--charcoal); border-radius:999px; background:var(--sage-200); margin-bottom:8px; }
+  .kb-work-title { font-size:14px; font-weight:900; margin-bottom:4px; line-height:1.3; }
+  .kb-work-desc { font-size:11px; font-weight:500; color:var(--charcoal-soft); line-height:1.45; }
+
+  /* Contact */
+  .kb-contact { background:var(--charcoal); color:var(--cream); border:2px solid var(--charcoal); border-radius:20px; padding:32px; box-shadow:6px 6px 0 var(--lilac-500); }
+  .kb-contact .kb-section-eyebrow { color:var(--tan-300); }
+  .kb-contact .kb-h2 { color:var(--cream); }
+  .kb-contact-input { width:100%; font-family:'Nunito',sans-serif; font-size:13px; font-weight:600; padding:10px 12px; border:2px solid var(--cream); border-radius:10px; background:var(--charcoal); color:var(--cream); margin-bottom:10px; outline:none; transition: border-color var(--dur-fast) var(--ease-smooth); }
+  .kb-contact-input:focus { border-color:var(--lilac-300); }
+  .kb-contact-input::placeholder { color:rgba(246,242,234,0.5); }
+  .kb-contact-submit { font-family:'Nunito',sans-serif; font-size:13px; font-weight:800; background:var(--lilac-200); color:var(--charcoal); border:2px solid var(--cream); border-radius:10px; padding:10px 20px; cursor:pointer; box-shadow:3px 3px 0 var(--cream); transition: transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-snap), background var(--dur-base) var(--ease-smooth); display:inline-flex; align-items:center; gap:8px; }
+  .kb-contact-submit:hover { transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--cream); }
+  .kb-contact-submit:active { transform:translate(2px,2px); box-shadow:0 0 0 var(--cream); }
+  .kb-contact-submit.success { background:var(--sage-200); animation: shake 0.4s var(--ease-snap); }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-2px)} 75%{transform:translateX(2px)} }
+
+  .kb-success-check { display:none; }
+  .kb-contact-submit.success .kb-success-check { display:inline; }
+
+  /* Toast */
+  .kb-toast {
+    position:fixed; bottom:24px; left:50%; transform:translate(-50%, 80px) scale(0.9);
+    display:flex; align-items:center; gap:10px;
+    background:var(--sage-200); border:2px solid var(--charcoal); border-radius:12px;
+    padding:11px 16px; box-shadow:4px 4px 0 var(--charcoal);
+    font-size:13px; font-weight:800;
+    opacity:0; pointer-events:none; z-index:50;
+    transition: opacity var(--dur-slow) var(--ease-snap), transform var(--dur-slow) var(--ease-bounce);
+  }
+  .kb-toast.show { opacity:1; transform: translate(-50%, 0) scale(1); }
+  .kb-toast-icon { width:22px; height:22px; border-radius:50%; background:var(--charcoal); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+  /* ─── HOTSPOTS ─── */
+  .hot {
+    position: relative;
+  }
+  .hot::before {
+    content: attr(data-num);
+    position:absolute; top:-10px; right:-10px;
+    width:28px; height:28px; border-radius:50%;
+    background: var(--tan-300); border:2px solid var(--charcoal);
+    color: var(--charcoal); font-weight:900; font-size:12px;
+    display:none; align-items:center; justify-content:center;
+    box-shadow: 2px 2px 0 var(--charcoal);
+    z-index: 10;
+    pointer-events:none;
+    animation: hotPulse 1.6s var(--ease-smooth) infinite;
+  }
+  body.show-hotspots .hot::before { display:flex; }
+  @keyframes hotPulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  body.show-hotspots .hot { outline: 2px dashed var(--lilac-500); outline-offset: 4px; border-radius: 6px; }
+
+  /* ─── RIGHT: MAPPING SIDEBAR ─── */
+  .sidebar {
+    overflow-y: auto; height: calc(100vh - 130px);
+    background: var(--white);
+    padding: 24px;
+  }
+  .sidebar::-webkit-scrollbar { width:8px; }
+  .sidebar::-webkit-scrollbar-thumb { background:var(--lilac-300); border-radius:4px; }
+  .sidebar h2 {
+    font-size:14px; font-weight:900; text-transform:uppercase; letter-spacing:0.06em;
+    margin-bottom:14px; padding-bottom:10px; border-bottom:2px solid var(--charcoal);
+    color:var(--charcoal);
+  }
+  .map {
+    display:flex; gap:11px; padding:12px;
+    border:2px solid var(--charcoal); border-radius:12px;
+    background:var(--cream); box-shadow:3px 3px 0 var(--charcoal);
+    margin-bottom:12px;
+  }
+  .map-num {
+    flex-shrink:0;
+    width:30px; height:30px; border-radius:50%;
+    background: var(--tan-300); border:2px solid var(--charcoal);
+    color: var(--charcoal); font-weight:900; font-size:13px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .map-content { flex:1; min-width:0; }
+  .map-where { font-size:10px; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; color:var(--lilac-500); margin-bottom:2px; }
+  .map-anim { font-size:13px; font-weight:900; margin-bottom:4px; }
+  .map-why { font-size:11px; font-weight:500; color:var(--charcoal-soft); line-height:1.5; }
+  .map-why code { font-family:'JetBrains Mono',monospace; font-size:10px; background:var(--cream-dark); padding:1px 4px; border-radius:3px; font-weight:700; color:var(--charcoal); }
+
+  .priority-row { display:flex; gap:6px; align-items:center; margin-top:6px; }
+  .priority-pip { font-size:9px; font-weight:800; padding:1px 7px; border:1.5px solid var(--charcoal); border-radius:999px; }
+  .pri-now    { background:var(--sage-200); }
+  .pri-soon   { background:var(--lilac-200); }
+  .pri-later  { background:var(--cream-dark); }
+
+  .impl-summary {
+    margin-top: 24px;
+    padding: 14px 16px;
+    background: var(--charcoal); color:var(--cream);
+    border:2px solid var(--charcoal); border-radius:12px;
+    box-shadow: 3px 3px 0 var(--lilac-500);
+  }
+  .impl-summary h3 { font-size:12px; font-weight:900; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; color:var(--tan-300); }
+  .impl-row { display:flex; justify-content:space-between; align-items:baseline; padding: 6px 0; border-bottom:1.5px solid rgba(246,242,234,0.15); font-size:12px; font-weight:600; }
+  .impl-row:last-child { border-bottom:none; }
+  .impl-row strong { font-weight:900; color:var(--cream); }
+  .impl-row .impl-val { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--lilac-200); }
+
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro">
+  <div>
+    <div class="intro-eyebrow">Implementation guide</div>
+    <h1>Animations applied to kodeaben.com</h1>
+    <p>
+      Same content, same layout — just <strong>10 motion changes</strong> mapped to the live site. Toggle hotspots to see what each animation lands on, or interact with the page directly. <strong>Try the contact form, hover the cards, click the monkey.</strong>
+    </p>
+  </div>
+  <div class="intro-controls">
+    <button class="ctrl-btn active" id="hotspot-toggle" onclick="toggleHotspots()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+      Hotspots ON
+    </button>
+    <button class="ctrl-btn" onclick="replayPage()">↻ Replay entry</button>
+  </div>
+</div>
+
+<!-- SPLIT -->
+<div class="split">
+
+  <!-- LEFT: PAGE -->
+  <div class="page-frame" id="page-frame">
+
+    <!-- NAV -->
+    <nav class="kb-nav hot" data-num="1">
+      <div class="kb-nav-logo hot" data-num="2" onclick="this.classList.remove('click-pulse'); void this.offsetWidth; this.classList.add('click-pulse')">
+        <img src="../assets/logo.png" alt="Kodeaben">
+      </div>
+      <span class="kb-nav-brand">kodeaben</span>
+      <div class="kb-nav-links">
+        <span class="kb-nav-link">Services</span>
+        <span class="kb-nav-link">Work</span>
+        <span class="kb-nav-link">Contact</span>
+      </div>
+      <div class="kb-nav-spacer"></div>
+      <button class="kb-nav-cta">Get in touch</button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="kb-hero" id="kb-hero">
+      <div>
+        <div class="kb-eyebrow stagger s1">Software consultancy</div>
+        <h1 class="kb-h1 stagger s2">Code built to last.</h1>
+        <p class="kb-lede stagger s3">Hi, I'm Anders — I help businesses build high-quality digital products, level up their teams, and hire the right engineers.</p>
+        <div class="kb-hero-actions stagger s4 hot" data-num="3">
+          <button class="kb-btn-primary">See what I offer</button>
+          <button class="kb-btn-secondary">Get in touch</button>
+        </div>
+      </div>
+      <div class="kb-mascot stagger s5"><img src="../assets/logo.png" alt="Mascot"></div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="kb-section" id="services-section">
+      <div class="kb-section-eyebrow">What I do</div>
+      <h2 class="kb-h2">Services</h2>
+      <p class="kb-section-lede">From shipping production code to training your team — I bring structure and craft to wherever you need it most.</p>
+      <div class="kb-services-grid hot" data-num="5">
+        <div class="kb-service reveal-target"><span class="kb-service-tag">Development</span><div class="kb-service-title">Software Development</div><div class="kb-service-desc">Robust, maintainable, scalable solutions — frontend-first.</div></div>
+        <div class="kb-service reveal-target"><span class="kb-service-tag" style="background:var(--sage-200)">Debugging</span><div class="kb-service-title">On-Demand Problem Solving</div><div class="kb-service-desc">Diagnose root causes fast and implement fixes that hold up.</div></div>
+        <div class="kb-service reveal-target"><span class="kb-service-tag" style="background:var(--tan-200)">Mentoring</span><div class="kb-service-title">Developer Mentoring</div><div class="kb-service-desc">Structured growth for developers leveling up in frontend.</div></div>
+        <div class="kb-service reveal-target"><span class="kb-service-tag">Education</span><div class="kb-service-title">Workshops &amp; Training</div><div class="kb-service-desc">Hands-on workshops on testing, refactoring, code quality.</div></div>
+        <div class="kb-service reveal-target"><span class="kb-service-tag" style="background:var(--sage-200)">Hiring</span><div class="kb-service-title">Technical Hiring Support</div><div class="kb-service-desc">Screenings and interviews so you hire right.</div></div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="kb-section">
+      <div class="kb-section-eyebrow">Selected projects</div>
+      <h2 class="kb-h2">Work</h2>
+      <p class="kb-section-lede">A selection of projects I've shipped — consumer products, internal tools, and design systems.</p>
+      <div class="kb-work-grid">
+        <div class="kb-work reveal-target hot" data-num="6">
+          <div class="kb-work-img">[ React Native · Angular ]</div>
+          <div class="kb-work-body"><span class="kb-work-tag">Mobile · Frontend</span><div class="kb-work-title">SEGES — Mobile &amp; Frontend</div><div class="kb-work-desc">Two React Native apps shipped to App Store and Play Store.</div></div>
+        </div>
+        <div class="kb-work reveal-target">
+          <div class="kb-work-img" style="background:linear-gradient(135deg, var(--sage-100), var(--sage-200))">[ Angular · .NET ]</div>
+          <div class="kb-work-body"><span class="kb-work-tag" style="background:var(--lilac-200)">Fullstack · EV</span><div class="kb-work-title">OK emobility</div><div class="kb-work-desc">EV charger management platform. Frontend standards.</div></div>
+        </div>
+        <div class="kb-work reveal-target">
+          <div class="kb-work-img" style="background:linear-gradient(135deg, var(--tan-100), var(--tan-200))">[ Design system ]</div>
+          <div class="kb-work-body"><span class="kb-work-tag" style="background:var(--tan-200)">Library architecture</span><div class="kb-work-title">BankData — Design System</div><div class="kb-work-desc">Multiple entry points, smaller bundles, better scaling.</div></div>
+        </div>
+        <div class="kb-work reveal-target">
+          <div class="kb-work-img">[ React · DevOps ]</div>
+          <div class="kb-work-body"><span class="kb-work-tag">React · Cypress</span><div class="kb-work-title">LEGO — Network Management</div><div class="kb-work-desc">Web UI for managing network devices. Cypress, Sentry.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="kb-section">
+      <div class="kb-contact hot" data-num="9">
+        <div class="kb-section-eyebrow">Let's talk</div>
+        <h2 class="kb-h2">Got a project in mind?</h2>
+        <p style="font-size:14px;font-weight:500;color:rgba(246,242,234,0.7);line-height:1.55;max-width:480px;margin-bottom:18px;">Whether you need a development partner, training, or hiring help — I'd love to hear about it.</p>
+        <form onsubmit="event.preventDefault(); submitContact(this)" style="max-width:380px">
+          <input type="email" class="kb-contact-input" placeholder="anders@kodeaben.com" value="anders@kodeaben.com">
+          <textarea class="kb-contact-input" rows="3" placeholder="Tell me about your project...">I need help shipping a React Native app.</textarea>
+          <button type="submit" class="kb-contact-submit hot" data-num="7" id="contact-submit">
+            <span class="kb-success-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span class="kb-submit-label">Send message</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- RIGHT: SIDEBAR -->
+  <div class="sidebar">
+    <h2>Animation map</h2>
+
+    <div class="map">
+      <div class="map-num">1</div>
+      <div class="map-content">
+        <div class="map-where">Top nav · links</div>
+        <div class="map-anim">Underline reveal</div>
+        <div class="map-why">Hover any nav link → underline scales from left in <code>220ms</code> snap. Replaces the standard hover-fade.</div>
+        <div class="priority-row"><span class="priority-pip pri-now">Ship now</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">2</div>
+      <div class="map-content">
+        <div class="map-where">Top nav · monkey logo</div>
+        <div class="map-anim">Mascot pop</div>
+        <div class="map-why">Hover tilts/scales the logo. Click for a full bounce-pulse — your only real personality moment in the chrome.</div>
+        <div class="priority-row"><span class="priority-pip pri-now">Ship now</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">3</div>
+      <div class="map-content">
+        <div class="map-where">Hero · CTAs</div>
+        <div class="map-anim">Press &amp; release</div>
+        <div class="map-why">"See what I offer" + "Get in touch" buttons. Lift on hover, snap shadow flat on press. <strong>The brand fingerprint.</strong></div>
+        <div class="priority-row"><span class="priority-pip pri-now">Ship now</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">4</div>
+      <div class="map-content">
+        <div class="map-where">Hero · first paint</div>
+        <div class="map-anim">Page entry stagger</div>
+        <div class="map-why">Eyebrow → H1 → lede → buttons → mascot. <code>80ms</code> stagger, only on initial page load. <strong>Click "↻ Replay entry" above.</strong></div>
+        <div class="priority-row"><span class="priority-pip pri-soon">Soon</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">5</div>
+      <div class="map-content">
+        <div class="map-where">Services grid</div>
+        <div class="map-anim">Scroll-into-view + card lift</div>
+        <div class="map-why">Cards fade up at 40% visible (fires once). On hover, lift + shadow shifts to lilac. <strong>Scroll the page to trigger.</strong></div>
+        <div class="priority-row"><span class="priority-pip pri-soon">Soon</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">6</div>
+      <div class="map-content">
+        <div class="map-where">Work grid · cards</div>
+        <div class="map-anim">Card lift (sage variant)</div>
+        <div class="map-why">Same as services, but shadow shifts to <strong>sage</strong> — visually separates Work from Services without changing density.</div>
+        <div class="priority-row"><span class="priority-pip pri-soon">Soon</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">7</div>
+      <div class="map-content">
+        <div class="map-where">Contact · submit button</div>
+        <div class="map-anim">Press → success morph</div>
+        <div class="map-why">Press snaps flat, then color-flips to sage with checkmark + tiny shake. <strong>Try the form below.</strong></div>
+        <div class="priority-row"><span class="priority-pip pri-now">Ship now</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">8</div>
+      <div class="map-content">
+        <div class="map-where">Contact · success toast</div>
+        <div class="map-anim">Toast slide-in</div>
+        <div class="map-why">After form submit, "Message sent — talk soon!" rises from the bottom with bounce overshoot. Auto-dismisses at 4s.</div>
+        <div class="priority-row"><span class="priority-pip pri-now">Ship now</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">9</div>
+      <div class="map-content">
+        <div class="map-where">Contact · text inputs</div>
+        <div class="map-anim">Focus shift</div>
+        <div class="map-why">Border switches to lilac on focus — same easing as everything else. Subtle but it ties the form into the system.</div>
+        <div class="priority-row"><span class="priority-pip pri-soon">Soon</span></div>
+      </div>
+    </div>
+
+    <div class="map">
+      <div class="map-num">10</div>
+      <div class="map-content">
+        <div class="map-where">Anchor links · "Services" / "Work" / "Contact"</div>
+        <div class="map-anim">Smooth scroll</div>
+        <div class="map-why"><code>scroll-behavior: smooth</code> on the root + 80ms scroll offset for the sticky nav. Already wired into this preview.</div>
+        <div class="priority-row"><span class="priority-pip pri-now">Ship now</span></div>
+      </div>
+    </div>
+
+    <!-- IMPL SUMMARY -->
+    <div class="impl-summary">
+      <h3>Build effort</h3>
+      <div class="impl-row"><span><strong>Phase 1</strong> · Buttons, nav, mascot, form</span><span class="impl-val">~ 2h</span></div>
+      <div class="impl-row"><span><strong>Phase 2</strong> · Cards + scroll reveal</span><span class="impl-val">~ 2h</span></div>
+      <div class="impl-row"><span><strong>Phase 3</strong> · Stagger + toast + polish</span><span class="impl-val">~ 1.5h</span></div>
+      <div class="impl-row"><span><strong>Total</strong> · One afternoon</span><span class="impl-val">~ 5.5h</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="kb-toast" id="kb-toast">
+  <div class="kb-toast-icon">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#F6F2EA" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <span>Message sent — talk soon!</span>
+</div>
+
+<script>
+  // Hotspots
+  document.body.classList.add('show-hotspots');
+  function toggleHotspots() {
+    document.body.classList.toggle('show-hotspots');
+    document.getElementById('hotspot-toggle').classList.toggle('active');
+    document.getElementById('hotspot-toggle').innerHTML = document.body.classList.contains('show-hotspots')
+      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>Hotspots ON'
+      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px"><circle cx="12" cy="12" r="9"/></svg>Hotspots OFF';
+  }
+
+  // Stagger entry (replayable)
+  function replayPage() {
+    const hero = document.getElementById('kb-hero');
+    hero.classList.remove('play-stagger');
+    void hero.offsetWidth;
+    hero.classList.add('play-stagger');
+  }
+  // Run on load
+  setTimeout(replayPage, 100);
+
+  // Form submit
+  function submitContact(form) {
+    const btn = document.getElementById('contact-submit');
+    btn.classList.add('success');
+    btn.querySelector('.kb-submit-label').textContent = 'Sent!';
+    setTimeout(() => {
+      const t = document.getElementById('kb-toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 4000);
+    }, 200);
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.querySelector('.kb-submit-label').textContent = 'Send message';
+    }, 6000);
+  }
+
+  // Scroll reveal (within the page-frame scroll container)
+  const frame = document.getElementById('page-frame');
+  const targets = document.querySelectorAll('.reveal-target');
+  let revealedCount = 0;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Stagger across siblings
+        setTimeout(() => entry.target.classList.add('visible'), revealedCount * 60);
+        revealedCount++;
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { root: frame, threshold: 0.3 });
+  targets.forEach(t => observer.observe(t));
+</script>
+</body>
+</html>
