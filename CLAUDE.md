@@ -35,7 +35,7 @@ Never hardcode hex values in `style.css` — always use CSS variables.
 1. **Nav** — sticky floating pill navbar
 2. **#hero** — headline + logo visual + two CTAs
 3. **#services** — 5 service cards in a responsive grid
-4. **#work** — 7 client project cards (SEGES, OK emobility, BankData, LEGO, Danske Bank ×2, Intelligent Systems)
+4. **#work** — 9 client project cards, newest first, mirroring the CV (footer = the CV's outcome badges, not tech) (LEGO ASM, Vaas Digital, SEGES, OK emobility, BankData, Intelligent Systems, LEGO GI, Danske Bank ×2)
 5. **#contact** — mailto CTA, sage-tinted background
 6. **Footer** — brand + copyright
 
